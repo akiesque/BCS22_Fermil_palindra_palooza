@@ -3,15 +3,19 @@
 ## implementing a list/stack algorithm.
 ## CODE BY STEPHANIE FERMIL | BCS22
 
-import string
-letter_list = (list(string.ascii_lowercase)) ## generates a letter list to save the time
-## of defining letters one by one.
+## all lists and needed objects are below this section.
 
-numbers_list = str(list(range(0,10)))
+check_list = ['a','b','c','d','e','f','g',
+               'i','j','k','l','m','n','o',
+               'p','q','r','s','t','u','v',
+               'w','x','y','z', '0', '1', '2',
+               '3', '4', '5', '6', '7', '8', '9']
 i = 1
+revlist = []
+this_list = []
 
-## defining the list for numbers, in case numbers are placed
-## in input, it will check here.
+## defining the list for numbers, in case numbers and letters are placed
+## in input, it will check the list, 'check_list'.
 
 ## stack code
 
@@ -51,25 +55,27 @@ class Stack:
             temp = None
             return data
 
-    def reverse_checker(self): ## reverses self.data and returns the reversed list.
+    def reverse_checker(self): 
+        ## reverses self.data and returns the reversed list.
         if self.top is not None:
-            reverseList = []
             temp = self.top
             while temp:
-                reverseList.append(temp.data)
+                revlist.append(temp.data)
                 temp = temp.next
-            return reverseList
+            return revlist
         else:
             print("Stack is empty.")
 
 def palcheck(palindrome): ## takes the argument 'palindrome' and turns it into a list
     resp = palindrome.lower() ## and runs it under the function Stack().
-    this_list = list(palindrome) 
     reverse = Stack()
 
     for x in resp:
-        if x in letter_list or x in numbers_list:
+        if x in check_list:
+            this_list.append(x)
             reverse.push(x) ## this will loop through the palindrome and push data to the stack.
+        else:
+            continue
 
     revlist = reverse.reverse_checker()
     finalpal = "".join(this_list)
@@ -98,3 +104,4 @@ while i == 1:
 ## of the list come one by one together into a full idea, I think
 ## this is one of my favorites about lists.
         
+    
